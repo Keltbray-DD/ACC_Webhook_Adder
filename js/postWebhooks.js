@@ -58,7 +58,8 @@ async function addWebhooks(startfolder_list){
                 
             }
             console.log(filteredFolderList)
-            await postWebhook(filteredFolderList)
+            returnedArray = await postWebhook(filteredFolderList)
+            displayMessages(returnedArray)
         } catch {
             console.log("Error: Geting folder list");
         }
@@ -375,3 +376,19 @@ async function extractIds(urlInputValue) {
         extractIds(pastedText);
     });
     })
+
+function displayMessages(array) {
+    // Get the container element
+    var outputLogContainer = document.getElementById('outputLog-list');
+
+    // Clear previous content
+    outputLogContainer.innerHTML = '';
+
+    // Loop through the messages array and create list items
+    array.forEach(item => {
+        var listItem = document.createElement('li');
+        listItem.innerHTML = `<p>Folder Webhook Created for: ${item.FolderPath}</p>`
+        outputLogContainer.appendChild(listItem);
+    });
+
+    }
