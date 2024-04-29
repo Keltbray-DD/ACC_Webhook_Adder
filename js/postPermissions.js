@@ -53,41 +53,6 @@ let totalFolders
 let progressSub
 let completedSub
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('submitButton').addEventListener('click', async function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-
-        // Record the start time
-        const startTime = performance.now();
-
-        // Update the HTML element with the elapsed time
-        //updateElapsedTime(startTime);
-
-        // Call the searchAndPerformAction function here
-        await batchUpdatePermissions(startfolder_list);
-
-        // Record the end time
-        const endTime = performance.now();
-
-        // Calculate the elapsed time in milliseconds
-        const elapsedTime = startTime;
-
-    });
-
-    function updateElapsedTime(elapsedTime) {
-        const interval = setInterval(() => {
-            const minutes = Math.floor(elapsedTime / (1000 * 60));
-            const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
-
-            const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            document.getElementById('elapsedTime').textContent = `Time elapsed: ${formattedTime}`;
-            elapsedTime += 1000; // Increment elapsed time by 1 second
-
-
-        }, 1000); // Update every second
-    }
-});
-
 
 
 
@@ -176,6 +141,7 @@ async function getAccessToken(scopeInput){
 
     return signedURLData
     }
+
 async function generateTokenDataCreate(clientId,clientSecret){
     const bodyData = {
     client_id: clientId,
